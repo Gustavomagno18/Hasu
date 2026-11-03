@@ -1,0 +1,28 @@
+#!/bin/sh
+# Simula los menús de ani-cli-mx (mismas indicaciones y formato) para probar la interfaz sin red.
+printf 'Buscando animes...\n' >&2
+sleep 0.4
+state=results
+while :; do
+  case "$state" in
+    results)
+      choice="$(printf '1 [ESPAÑOL] Naruto [JKAnime]\n2 [ESPAÑOL] Naruto Shippuden [AnimeAV1]\n3 [ENGLISH] Naruto: The Movie [AniDB]\n4 Buscar de nuevo\n5 Volver al inicio\n6 Salir\n' | dmenu -l 20 -p 'Selecciona Anime: ')" || exit 0
+      case "$choice" in 4*|5*|6*) exit 0;; esac
+      printf 'Buscando episodios...\n' >&2; sleep 0.4; state=episodes ;;
+    episodes)
+      eps=""; i=1; while [ $i -le 40 ]; do eps="$eps$i Episodio $i\n"; i=$((i+1)); done
+      choice="$(printf "${eps}41 Volver a resultados\n" | dmenu -l 20 -p 'Selecciona episodio (* ultimo visto): ')" || { state=results; continue; }
+      case "$choice" in 41*) state=results; continue;; esac
+      ep="${choice%% *}"; state=player ;;
+    player)
+      printf 'Reproduciendo episodio %s...\n' "$ep" >&2; sleep 0.3
+      choice="$(printf '1 Siguiente episodio\n2 Episodio anterior\n3 Repetir episodio actual\n4 Elegir otro capítulo\n5 Episodio aleatorio\n6 Elegir calidad de video\n7 Activar modo continuo\n8 Volver a resultados\n9 Buscar otro anime\n10 Volver al inicio\n11 Salir\n' | dmenu -l 20 -p "Reproduciendo episodio $ep de Naruto... Modo actual: manual - elige manualmente el siguiente capitulo ")" || { state=episodes; continue; }
+      case "$choice" in
+        1\ *) ep=$((ep+1));;
+        2\ *) ep=$((ep-1));;
+        4\ *) state=episodes;;
+        8\ *) state=results;;
+        11*|10*|9*) exit 0;;
+      esac ;;
+  esac
+done
