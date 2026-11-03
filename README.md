@@ -6,30 +6,22 @@ Busca anime, películas, series y doramas, elige episodio y lo reproduce con mpv
 ## Cómo funciona
 
 No reescribe ningún scraper. Ejecuta `ani-cli-mx --dmenu` y pone delante en el `PATH` un `dmenu`
-falso (`animx/dmenu_shim.py`). Cada menú que el script mostraría (resultados, episodios, fuente,
+falso (`hasu/dmenu_shim.py`). Cada menú que el script mostraría (resultados, episodios, fuente,
 controles de reproducción…) llega a AniMX por un socket Unix; tu elección vuelve al script como si
-fuera dmenu. Así las fuentes nuevas o arregladas en ani-cli-mx funcionan en AniMX sin tocar nada.
+fuera dmenu. Así las fuentes nuevas o arregladas en ani-cli-mx funcionan en Hasu sin tocar nada.
 
 ## Requisitos (Arch)
 
     sudo pacman -S python-gobject gtk4 libadwaita
-    yay -S ani-cli-mx        # trae mpv, curl, fzf, yt-dlp…
+    yay -S ani-cli-mx        # usa paru si no usas yay, trae mpv, curl, fzf, yt-dlp…
 
 ## Probar sin instalar
 
-    python -m animx
+    python -m hasu
 
 ## Instalar para tu usuario
 
     ./install-local.sh
-
-## Flatpak (borrador sin probar)
-
-`io.github.Gustavomagno18.Hasu.yaml` empaqueta la interfaz y ani-cli-mx. Faltan dos cosas:
-
-1. **mpv dentro del sandbox**: hay que añadir un módulo de mpv (copiando el de `io.mpv.Mpv` en
-   Flathub) o permitir lanzar el reproductor del sistema. Es la parte más pesada.
-2. **yt-dlp** (bloque comentado en el manifiesto).
 
 ## Pruebas
 
