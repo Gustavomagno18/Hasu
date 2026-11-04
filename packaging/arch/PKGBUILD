@@ -1,0 +1,32 @@
+# Maintainer: Gustavomagno18 <gusgilabert@gmail.com>
+pkgname=hasu-git
+_pkgname=hasu
+pkgver=r3.c0330ea
+pkgrel=1
+pkgdesc='Interfaz gráfica GTK4/libadwaita para ani-cli-mx'
+arch=('any')
+url='https://github.com/Gustavomagno18/Hasu'
+license=('GPL-3.0-or-later')
+depends=('python' 'python-gobject' 'gtk4' 'libadwaita' 'glib2' 'pango' 'gdk-pixbuf2' 'hicolor-icon-theme' 'ani-cli-mx')
+makedepends=('git')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd Hasu
+  printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd Hasu
+  _id=io.github.Gustavomagno18.Hasu
+  install -d "$pkgdir/usr/share/hasu"
+  cp -r hasu "$pkgdir/usr/share/hasu/"
+  find "$pkgdir/usr/share/hasu" -name __pycache__ -prune -exec rm -rf {} +
+  install -Dm755 bin/hasu "$pkgdir/usr/bin/hasu"
+  install -Dm644 "data/$_id.desktop" -t "$pkgdir/usr/share/applications"
+  install -Dm644 "data/$_id.svg" -t "$pkgdir/usr/share/icons/hicolor/scalable/apps"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

@@ -6,10 +6,10 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <description>
-    <p>AniMX es una interfaz GTK4/libadwaita para ani-cli-mx: busca anime, películas, series y doramas, elige el episodio y lo reproduce con mpv.</p>
+    <p>Hasu es una interfaz GTK4/libadwaita para ani-cli-mx: busca anime, películas, series y doramas, elige el episodio y lo reproduce con mpv.</p>
     <p>No incluye ni aloja contenido. Usa ani-cli-mx para consultar sitios de terceros; revisa las leyes de derechos de autor de tu país.</p>
   </description>
-  <launchable type="desktop-id">io.github.tuusuario.AniMX.desktop</launchable>
+  <launchable type="desktop-id">io.github.Gustavomagno18.Hasu.desktop</launchable>
   <content_rating type="oars-1.1"/>
   <releases>
     <release version="0.1.0" date="2026-11-03"/>

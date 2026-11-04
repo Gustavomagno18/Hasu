@@ -44,7 +44,7 @@ modules:
     buildsystem: simple
     build-commands:
       - install -d /app/share/hasu
-      - cp -r animx /app/share/hasu/
+      - cp -r hasu /app/share/hasu/
       - install -Dm755 bin/hasu /app/bin/hasu
       - install -Dm644 data/io.github.Gustavomagno18.Hasu.desktop -t /app/share/applications
       - install -Dm644 data/io.github.Gustavomagno18.Hasu.metainfo.xml -t /app/share/metainfo
