@@ -1,7 +1,9 @@
 # Hasu
 
-Interfaz gráfica (GTK4 + libadwaita) para [ani-cli-mx](https://github.com/Gildedboy/ani-cli-mx).
-Busca anime, películas, series y doramas, elige episodio y lo reproduce con mpv.
+Interfaz gráfica ligera (GTK4 + libadwaita) para [ani-cli-mx](https://github.com/Gildedboy/ani-cli-mx).
+Busca anime, películas, series y doramas, elige episodio y lo reproduce con mpv. Es mejor que usar un navegador web.
+No solo por su bajo consumo de recursos (la app 200mb de ram aproximadante y los videos de los animes 300mb), sino
+también la comodidad que ofrece para seguir viendo rápidamente tu contenido favorito sin abrir un navegador pesado.
 
 <p align="center">
   <img src="Preview-menu.png" alt="Menú principal" width="45%" />
