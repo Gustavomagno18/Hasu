@@ -6,8 +6,8 @@ No solo por su bajo consumo de recursos (la app 200mb de ram aproximadante y los
 también la comodidad que ofrece para seguir viendo rápidamente tu contenido favorito sin abrir un navegador pesado.
 
 <p align="center">
-  <img src="Preview-menu.png" alt="Menú principal" width="50%" />
-  <img src="Preview-video.png" alt="Vista de Anime" width="50%" />
+  <img src="Preview-menu.png" alt="Menú principal" width="45%" />
+  <img src="Preview-video.png" alt="Vista de Anime" width="45%" />
 </p>
 
 ## Cómo funciona
