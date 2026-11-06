@@ -88,7 +88,7 @@ modules:
       - --enable-vaapi
     sources:
       - type: git
-        url: https://git.ffmpeg.org/ffmpeg.git
+        url: https://github.com/FFmpeg/FFmpeg.git
         commit: 946fcce07b6dcd0331c8cc609192aeff5e1924f8
         tag: n9.0.2
 
