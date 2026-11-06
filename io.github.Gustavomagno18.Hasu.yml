@@ -1,0 +1,236 @@
+# Manifiesto Flatpak de Hasu para REPOSITORIO PROPIO (no para Flathub).
+# Los módulos de mpv, libass, ffmpeg, libplacebo, uchardet y yt-dlp salen del
+# manifiesto oficial io.mpv.Mpv de Flathub (mismas versiones y commits), recortados:
+# sin DVD/Blu-ray/DRM/vapoursynth/rubberband, que Hasu no usa.
+
+id: io.github.Gustavomagno18.Hasu
+runtime: org.gnome.Platform
+runtime-version: '51'
+sdk: org.gnome.Sdk
+command: hasu
+
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --env=LC_NUMERIC=C   # mpv lo necesita
+
+cleanup:
+  - '*.la'
+  - '*.a'
+
+modules:
+  # ---------- reproductor: mpv y sus dependencias ----------
+  - name: uchardet
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_STATIC=0
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+    sources:
+      - type: archive
+        url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.8.tar.xz
+        sha256: e97a60cfc00a1c147a674b097bb1422abd9fa78a2d9ce3f3fdcc2e78a34ac5f0
+
+  - name: libass
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    config-opts:
+      - --disable-static
+      - --enable-asm
+      - --enable-harfbuzz
+      - --enable-fontconfig
+    sources:
+      - type: git
+        url: https://github.com/libass/libass.git
+        tag: 0.17.5
+        commit: 4a05d8127f525943ebf45fdc6497c9e665947f0d
+
+  - name: ffmpeg
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/ffmpeg/examples
+    config-opts:
+      - --disable-debug
+      - --disable-doc
+      - --disable-static
+      - --enable-encoder=png
+      - --enable-gnutls
+      - --enable-gpl
+      - --enable-shared
+      - --enable-version3
+      - --enable-libaom
+      - --enable-libass
+      - --enable-libdav1d
+      - --enable-libfreetype
+      - --enable-libmp3lame
+      - --enable-libopus
+      - --enable-libjxl
+      - --enable-libmysofa
+      - --enable-libtheora
+      - --enable-libv4l2
+      - --enable-libvorbis
+      - --enable-libvpx
+      - --enable-libwebp
+      - --enable-libxml2
+      - --enable-vulkan
+      - --enable-libdrm
+      - --enable-vaapi
+    sources:
+      - type: git
+        url: https://github.com/FFmpeg/FFmpeg.git
+        commit: 946fcce07b6dcd0331c8cc609192aeff5e1924f8
+        tag: n9.0.2
+
+  - name: libplacebo
+    buildsystem: meson
+    config-opts:
+      - -Dvulkan=enabled
+      - -Dshaderc=enabled
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - type: git
+        url: https://code.videolan.org/videolan/libplacebo.git
+        tag: v7.387.0
+        commit: 275f7dea27924cdd34ab2e6c20e448b6bc4fab65
+
+  # libXpresent: lo pide mpv para X11 y el runtime no lo trae (igual que en el manifiesto oficial).
+  - name: libXpresent
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/lib/libxpresent.git
+        tag: libXpresent-1.0.2
+        commit: 4d92149372461bf575e8a09b1064a2884c38c3aa
+
+  # LuaJIT: el runtime no trae Lua y mpv (con -Dlua=enabled) lo necesita.
+  # Es el mismo módulo que usa el manifiesto oficial de mpv (flathub/shared-modules).
+  - name: luajit
+    no-autogen: true
+    make-args:
+      - BUILDMODE=dynamic
+      - PREFIX=${FLATPAK_DEST}
+    make-install-args:
+      - PREFIX=${FLATPAK_DEST}
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+    sources:
+      - type: git
+        url: https://github.com/openresty/luajit2.git
+        tag: v2.1-20260724
+        commit: 982cd8323eafd8604a9e5f2a916aa50b9f67d9ed
+
+  - name: mpv
+    buildsystem: meson
+    config-opts:
+      - -Dbuild-date=false
+      - -Dcplayer=true
+      - -Dlibmpv=false
+      - -Dlua=enabled          # ani-cli-mx controla mpv con scripts Lua
+      - -Dalsa=enabled
+      - -Dpulse=enabled
+      - -Dpipewire=enabled
+      - -Dwayland=enabled
+      - -Dx11=enabled
+      - -Dgl=enabled
+      - -Degl=enabled
+      - -Degl-wayland=enabled
+      - -Degl-x11=enabled
+      - -Dgl-x11=enabled
+      - -Dplain-gl=enabled
+      - -Dvulkan=enabled
+      - -Dvaapi=enabled
+      - -Dvaapi-wayland=enabled
+      - -Dvaapi-x11=enabled
+      - -Ddmabuf-wayland=enabled
+      - -Dxv=enabled
+      - -Duchardet=enabled
+      - -Dlibarchive=enabled
+      - -Diconv=enabled
+      - -Djpeg=enabled
+      - -Dlcms2=enabled
+      - -Dzlib=enabled
+      - -Ddrm=disabled
+      - -Dgbm=disabled
+      - -Degl-drm=disabled
+      - -Dvaapi-drm=disabled
+      - -Dcdda=disabled
+      - -Ddvdnav=disabled
+      - -Dlibbluray=disabled
+      - -Drubberband=disabled
+      - -Dzimg=disabled
+      - -Dvapoursynth=disabled
+      - -Djavascript=disabled
+      - -Dwerror=false
+    cleanup:
+      # solo los archivos de mpv: así no se borra nada de Hasu
+      - /share/applications/mpv.desktop
+      - /share/icons/hicolor/*/apps/mpv*
+      - /share/metainfo/mpv.metainfo.xml
+      - /share/man
+      - /share/doc
+      - /share/zsh
+      - /share/bash-completion
+    sources:
+      - type: git
+        url: https://github.com/mpv-player/mpv.git
+        tag: v0.41.0
+        commit: 41f6a645068483470267271e1d09966ca3b9f413
+
+  # ---------- yt-dlp (lo usa ani-cli-mx para resolver algunos enlaces) ----------
+  - name: yt-dlp
+    no-autogen: true
+    no-make-install: true
+    make-args:
+      - yt-dlp
+      - PYTHON=/usr/bin/python3
+    post-install:
+      - install yt-dlp /app/bin
+    sources:
+      - type: archive
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.26/yt-dlp.tar.gz
+        sha256: 21f942d258d25cc4e60b4982a25c423460f0bebb835f38e6dfd1fcb140087f95
+
+  # ---------- ani-cli-mx ----------
+  # El lanzador busca el script en ../libexec/ani-cli-mx respecto de su carpeta.
+  - name: ani-cli-mx
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 ani-cli-mx-core /app/libexec/ani-cli-mx
+      - install -Dm755 ani-cli-mx /app/bin/ani-cli-mx
+      - install -Dm644 LICENSE /app/share/licenses/ani-cli-mx/LICENSE
+    sources:
+      - type: git
+        url: https://github.com/Gildedboy/ani-cli-mx.git
+        commit: e689e51ea5cb3fabefd12c63c0e10a3f31189bb7   # v3.0.10; cambialo al actualizar
+
+  # ---------- Hasu ----------
+  - name: hasu
+    buildsystem: simple
+    build-commands:
+      - install -d /app/share/hasu
+      - cp -r hasu /app/share/hasu/
+      - install -Dm755 bin/hasu /app/bin/hasu
+      - install -Dm644 data/io.github.Gustavomagno18.Hasu.desktop -t /app/share/applications
+      - install -Dm644 data/io.github.Gustavomagno18.Hasu.metainfo.xml -t /app/share/metainfo
+      - install -Dm644 data/io.github.Gustavomagno18.Hasu.svg -t /app/share/icons/hicolor/scalable/apps
+      - install -Dm644 LICENSE /app/share/licenses/hasu/LICENSE
+    sources:
+      - type: git
+        url: https://github.com/Gustavomagno18/Hasu.git
+        branch: main
