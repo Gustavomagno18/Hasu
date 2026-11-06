@@ -5,7 +5,7 @@ Busca anime, películas, series y doramas, elige episodio y lo reproduce con mpv
 
 <p align="center">
   <img src="Preview-menu.png" alt="Menú principal" width="45%" />
-  <img src="Preview-video.png" alt="Vista de video" width="45%" />
+  <img src="Preview-video.png" alt="Vista de Anime" width="45%" />
 </p>
 
 ## Cómo funciona
@@ -14,6 +14,13 @@ No reescribe ningún scraper. Ejecuta `ani-cli-mx --dmenu` y pone delante en el 
 falso (`hasu/dmenu_shim.py`). Cada menú que el script mostraría (resultados, episodios, fuente,
 controles de reproducción…) llega a Hasu por un socket Unix; tu elección vuelve al script como si
 fuera dmenu. Así las fuentes nuevas o arregladas en ani-cli-mx funcionan en Hasu sin tocar nada.
+
+## Instalación Flatpak
+
+Ve a releases, descarga el archivo io.github.Gustavomagno18.Hasu.flatpak, ejecutalo con tu tienda favorita (Bazaar, Gnome software, etcétera)
+o instalalo desde la terminal en la carpeta donde lo descargaste con:
+
+    flatpak install io.github.Gustavomagno18.Hasu.flatpak
 
 ## Requisitos (Arch)
 
