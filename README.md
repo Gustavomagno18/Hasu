@@ -6,8 +6,8 @@ No solo por su bajo consumo de recursos (la app 200mb de ram aproximadante y los
 también la comodidad que ofrece para seguir viendo rápidamente tu contenido favorito sin abrir un navegador pesado.
 
 <p align="center">
-  <img src="Preview-menu.png" alt="Menú principal" width="45%" />
-  <img src="Preview-video.png" alt="Vista de Anime" width="45%" />
+  <img src="Preview-menu.png" alt="Menú principal" width="50%" />
+  <img src="Preview-video.png" alt="Vista de Anime" width="50%" />
 </p>
 
 ## Cómo funciona
@@ -17,12 +17,18 @@ falso (`hasu/dmenu_shim.py`). Cada menú que el script mostraría (resultados, e
 controles de reproducción…) llega a Hasu por un socket Unix; tu elección vuelve al script como si
 fuera dmenu. Así las fuentes nuevas o arregladas en ani-cli-mx funcionan en Hasu sin tocar nada.
 
-## Instalación Flatpak
+## Requisitos e Instalación Flatpak
 
-Ve a releases, descarga el archivo io.github.Gustavomagno18.Hasu.flatpak, ejecutalo con tu tienda favorita (Bazaar, Gnome software, etcétera)
+Necesitarás instalar estos runtimes de Gnome:
+
+    flatpak install --user flathub org.gnome.Sdk//50 org.gnome.Platform//50
+
+Luego ve a releases, descarga el archivo io.github.Gustavomagno18.Hasu.flatpak, ejecutalo con tu tienda favorita (Bazaar, Gnome software, etcétera)
 o instalalo desde la terminal en la carpeta donde lo descargaste con:
 
     flatpak install io.github.Gustavomagno18.Hasu.flatpak
+    
+Finalmente la abres y a disfrutar de tus animes favoritos.
 
 ## Requisitos (Arch)
 
