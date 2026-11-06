@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Hasu
+GenericName=Anime en español
+Comment=Interfaz gráfica para ani-cli-mx
+Exec=hasu
+Icon=io.github.Gustavomagno18.Hasu
+Terminal=false
+Categories=AudioVideo;Video;GTK;
+Keywords=anime;ani-cli;mpv;español;
+StartupNotify=true
