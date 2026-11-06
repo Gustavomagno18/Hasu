@@ -1,0 +1,7 @@
+[Flatpak Ref]
+Name=Hasu
+Title=Ve anime fácilmente en Español Latino
+App=io.github.Gustavomagno18.Hasu
+Url=https://github.com/Gustavomagno18/hasu-repo
+IsRuntime=false
+GPGKey=

@@ -3,6 +3,11 @@
 Interfaz gráfica (GTK4 + libadwaita) para [ani-cli-mx](https://github.com/Gildedboy/ani-cli-mx).
 Busca anime, películas, series y doramas, elige episodio y lo reproduce con mpv.
 
+<p align="center">
+  <img src="Preview-menu.png" alt="Menú principal" width="45%" />
+  <img src="Preview-video.png" alt="Vista de video" width="45%" />
+</p>
+
 ## Cómo funciona
 
 No reescribe ningún scraper. Ejecuta `ani-cli-mx --dmenu` y pone delante en el `PATH` un `dmenu`
