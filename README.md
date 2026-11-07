@@ -56,8 +56,8 @@ Finalmente la buscas en tu lanzador de aplicaciones, la abres y a disfrutar de t
 
 ## Apoyo
 
-If you like **Hasu**, consider giving this repo a ⭐ on GitHub.  
-You can also follow me for more Linux customizations:  
+Si te gusta **Hasu**, considera darle a este repositorio una ⭐ en GitHub.  
+También puedes seguir mi perfil para más software libre para Linux:  
 [GitHub Profile](https://github.com/Gustavomagno18)
     
 ## Pruebas
