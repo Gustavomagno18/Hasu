@@ -17,18 +17,18 @@ falso (`hasu/dmenu_shim.py`). Cada menú que el script mostraría (resultados, e
 controles de reproducción…) llega a Hasu por un socket Unix; tu elección vuelve al script como si
 fuera dmenu. Así las fuentes nuevas o arregladas en ani-cli-mx funcionan en Hasu sin tocar nada.
 
-## Requisitos e Instalación Flatpak
+## Requisitos e Instalación Flatpak manual
 
 Necesitarás instalar estos runtimes de Gnome:
 
-    flatpak install --user flathub org.gnome.Sdk//50 org.gnome.Platform//50
+    flatpak install --user flathub org.gnome.Sdk//51 org.gnome.Platform//51
 
 Luego ve a releases, descarga el archivo io.github.Gustavomagno18.Hasu.flatpak, ejecutalo con tu tienda favorita (Bazaar, Gnome software, etcétera)
 o instalalo desde la terminal en la carpeta donde lo descargaste con:
 
     flatpak install io.github.Gustavomagno18.Hasu.flatpak
     
-Finalmente la abres y a disfrutar de tus animes favoritos.
+Finalmente la buscas en tu lanzador de aplicaciones, la abres y a disfrutar de tus animes favoritos.
 
 ## Requisitos (Arch)
 
